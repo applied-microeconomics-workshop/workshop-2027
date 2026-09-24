@@ -18,10 +18,24 @@ body {
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
+/* The photo is optional. Drop a wide image at img/hero.jpg and it appears
+   behind the blue veil below; until then the gradient alone is shown, and a
+   missing file changes nothing. See README-site.txt for size guidance.      */
 .hero {
-  background: var(--blue);
+  position: relative;
+  background-color: var(--blue);
+  background-image:
+    linear-gradient(180deg,
+      rgba(1, 33, 105, 0.90) 0%,
+      rgba(1, 33, 105, 0.66) 45%,
+      rgba(1, 33, 105, 0.94) 100%),
+    url("img/hero.jpg");
+  background-size: cover;
+  background-position: center 58%;
+  background-repeat: no-repeat;
+  border-bottom: 3px solid var(--gold);
   color: #fff;
-  padding: 3.5rem 1.5rem 4rem;
+  padding: 2.2rem 1.5rem 4rem;
   text-align: center;
 }
 .hero nav {
@@ -34,12 +48,15 @@ body {
   text-decoration: none;
   margin: 0 0.9rem;
   opacity: 0.85;
+  display: inline-block;
+  padding: 0.15rem 0;
 }
 .hero nav a:hover { opacity: 1; border-bottom: 2px solid var(--gold); }
 .hero h1 {
   font-size: clamp(1.8rem, 4.5vw, 3rem);
   font-weight: normal;
   letter-spacing: 0.5px;
+  text-wrap: balance;
 }
 .hero .subtitle {
   margin-top: 0.8rem;
@@ -53,6 +70,14 @@ body {
   font-size: 1rem;
   opacity: 0.9;
 }
+.hero-body { max-width: 860px; margin: 0 auto; }
+
+/* Landing page: no nav, so give the hero a little more room to breathe */
+.hero-landing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.hero-landing .subtitle { font-style: normal; }
 
 /* ── Sections ─────────────────────────────────────────────────────────────── */
 main { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
@@ -75,6 +100,7 @@ h2::after {
 }
 section p { margin-bottom: 1rem; }
 .fine { font-size: 0.9rem; color: var(--muted); }
+.lead { font-size: 1.12rem; }
 a { color: var(--blue); }
 
 /* ── Theme cards ──────────────────────────────────────────────────────────── */
@@ -113,6 +139,8 @@ a { color: var(--blue); }
   color: var(--blue);
   font-size: 1.15rem;
 }
+.keynote-card h3 a { text-decoration: none; }
+.keynote-card h3 a:hover { border-bottom: 2px solid var(--gold); }
 .keynote-card .affiliation {
   color: var(--gold);
   font-style: italic;
@@ -151,8 +179,32 @@ a { color: var(--blue); }
   margin-bottom: 0.3rem;
 }
 
-/* ── Mailing list button ──────────────────────────────────────────────────── */
+/* ── Editions (landing page) ──────────────────────────────────────────────── */
+.edition-card {
+  border: 1px solid #ddd;
+  border-left: 4px solid var(--blue);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.2rem;
+}
+.edition-card h3 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--blue);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.edition-date {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem !important;
+}
+.edition-card p:last-child { margin-bottom: 0; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
 .cta { text-align: center; margin: 1.5rem 0; }
+.cta-left { text-align: left; margin-bottom: 0; }
 .button {
   display: inline-block;
   background: var(--blue);
@@ -188,3 +240,37 @@ footer a { color: var(--blue); }
   font-size: 0.85rem;
 }
 .funding img { max-height: 48px; vertical-align: middle; }
+
+/* ── Logo band ────────────────────────────────────────────────────────────── */
+/* Both logos sit on white, as their brand guidelines require. */
+.logo-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem 1.6rem;
+  background: #fff;
+  border: 1px solid #dfe5ef;
+  border-radius: 4px;
+  max-width: 720px;
+  margin: 0 auto 1.4rem;
+  padding: 1.1rem 1.5rem;
+}
+.logo-band-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.logo-band a { display: inline-flex; align-items: center; }
+.logo-band img { display: block; width: auto; }
+.logo-unil { height: 34px; }
+.logo-snsf { height: 30px; }
+
+@media (max-width: 560px) {
+  .hero nav a { margin: 0 0.55rem; }
+  .logo-band { gap: 0.6rem 1rem; padding: 1rem; }
+  .logo-unil { height: 28px; }
+  .logo-snsf { height: 25px; }
+}
